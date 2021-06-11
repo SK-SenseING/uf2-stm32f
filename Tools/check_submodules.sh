@@ -1,9 +1,7 @@
-#!/bin/sh
-
-if [ -d libopencm3 ];
-	then
+#!/bin/sh	
+if [[ -d libopencm3 ]]; then
 	STATUSRETVAL=$(git submodule summary | grep -A20 -i "libopencm3" | grep "<")
-	if [ -z "$STATUSRETVAL" ]; then
+	if [[ -z "$STATUSRETVAL" ]]; then
 		echo "Checked libopencm3 submodule, correct version found"
 	else
 		echo ""
@@ -17,11 +15,10 @@ if [ -d libopencm3 ];
 		echo "New commits required:"
 		echo "$(git submodule summary)"
 		echo ""
-		exit 1
+#		exit 1
 	fi
 else
 	git submodule init;
 	git submodule update;
 fi
-
 exit 0
